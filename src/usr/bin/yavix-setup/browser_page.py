@@ -68,31 +68,10 @@ class BrowserPage(Gtk.Box):
 		self.next_button.set_visible(False)
 		self.append(self.next_button)
 
-	def on_start_clicked(self, button):
-		pass
-	
 	def on_browser_clicked(self, button):
 		import setup
 
 		setup.browser = button.browser
 		self.next_button.set_visible(True)	
 			
-
-class MainWindow(Gtk.ApplicationWindow):
-	def __init__(self, app):
-		super().__init__(application=app)
-		self.set_title("")
-		self.set_default_size(600, 400)
-		self.set_resizable(False)
-
-		welcome_page = WelcomePage()
-		self.set_child(welcome_page)
-
-class InstallerApp(Adw.Application):
-	def __init__(self):
-		super().__init__(application_id="com.luigiano-code.Yavix-installer", flags=0)
-
-	def do_activate(self):
-		win = MainWindow(self)
-		win.present()
 
