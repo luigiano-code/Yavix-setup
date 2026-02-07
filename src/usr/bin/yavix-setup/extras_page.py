@@ -67,6 +67,5 @@ class ExtrasPage(Gtk.Box):
 		if self.checkbox_steam.get_active():
 			setup.extras.append("steam")
 
-		print(setup.extras)
 							
 

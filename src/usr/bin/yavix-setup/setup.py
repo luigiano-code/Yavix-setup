@@ -10,7 +10,9 @@ import sys
 from welcome_page import WelcomePage
 from browser_page import BrowserPage	
 from extras_page import ExtrasPage
+from office_page import OfficePage
 
+office = None
 browser = None
 extras = []
 
@@ -27,13 +29,17 @@ class MainWindow(Gtk.ApplicationWindow):
 		self.welcome_page = WelcomePage()
 		self.browser_page = BrowserPage()
 		self.extras_page = ExtrasPage()
+		self.office_page = OfficePage()
 
 		self.stack.add_named(self.welcome_page, "welcome")
 		self.stack.add_named(self.browser_page, "browser")
 		self.stack.add_named(self.extras_page, "extras")
+		self.stack.add_named(self.office_page, "office")
+
 
 		self.welcome_page.start_button.connect("clicked", self.show_browser_page)
 		self.browser_page.next_button.connect("clicked", self.show_extras_page)
+		self.extras_page.next_button.connect("clicked", self.show_office_page)
 		
 		self.stack.set_visible_child_name("welcome")
 
@@ -42,6 +48,9 @@ class MainWindow(Gtk.ApplicationWindow):
 	
 	def show_extras_page(self, button):
 		self.stack.set_visible_child_name("extras")
+
+	def show_office_page(self, button):
+		self.stack.set_visible_child_name("office")
 
 class SetupApp(Adw.Application):
 	def __init__(self):
